@@ -36,7 +36,7 @@ public interface MwsReader extends Closeable {
      * Returns null if the reader is not positioned on a labeled value
      * of the requested type.
      * <p>
-     * For XML reads: <code>&lt;name&gt;value&lt;/name&gt;
+     * For XML reads: <code>&lt;name&gt;value&lt;/name&gt;</code>
      * <p>
      * For JSON reads: <code>name:value</code> if in Object or
      * <code>value</code> if in list.

@@ -86,7 +86,7 @@ public interface MwsWriter extends Closeable {
      * <p>
      * For JSON: <code>[,]label:value</code> or <code>[,]value</code>
      * <p>
-     * For XML: <code>&lt;label&gt;valueFragment&lt;/label&gt;
+     * For XML: <code>&lt;label&gt;valueFragment&lt;/label&gt;</code>
      * 
      * @param name
      *            The label for the value.

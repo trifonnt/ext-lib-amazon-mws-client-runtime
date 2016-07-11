@@ -73,7 +73,7 @@ $ mkdir ../src/test/resources/
 $ mv runtime-src/com/amazonservices/mws/client/*.java ../src/main/java/com/amazonservices/mws/client
 
 
-$ mvn clean install -Dmaven.javadoc.skip=true
+$ mvn clean install -Dmaven.javadoc.skip=false
 
 ```
 
@@ -87,7 +87,7 @@ Publishing to JitPack
  - Open below URL in order to start JitPack build process
 
 ```shell
-https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.0
+https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.1
 ```
 
 

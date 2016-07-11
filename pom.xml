@@ -26,7 +26,7 @@ limitations under the License.
 
 	<groupId>com.github.trifonnt</groupId>
 	<artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<name>Amazon MWS :: Client Runtime</name>
 	<description>Amazon MWS Client Runtime Java Library</description>
