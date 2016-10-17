@@ -67,7 +67,8 @@ public interface MwsWriter extends Closeable {
      *      w.endObject(name);
      *  }
      * </code>
-     *
+     * @param namespace 
+     *			The namespace.
      * @param name
      *            The label for the value.
      * 

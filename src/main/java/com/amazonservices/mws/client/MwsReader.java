@@ -60,6 +60,8 @@ public interface MwsReader extends Closeable {
      * 
      * @param name
      *            The attribute name to get.
+     * @param cls 
+     * 			The Java class of the attribute.
      * 
      * @return The attribute value or null of not set.
      */
@@ -109,6 +111,7 @@ public interface MwsReader extends Closeable {
      * For XML reads: characters up to next tag.
      * <p>
      * For JSON reads: "characters"
+     * @param cls 
      * 
      * @return The read in string value.
      */

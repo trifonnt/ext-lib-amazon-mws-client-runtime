@@ -289,6 +289,8 @@ public class MwsXmlReader implements MwsReader {
 
     /**
      * Create a MwsXmlReader instance that reads a string.
+     * @param xml 
+     * 			The source in XML format.
      */
     public MwsXmlReader(String xml) {
         try {

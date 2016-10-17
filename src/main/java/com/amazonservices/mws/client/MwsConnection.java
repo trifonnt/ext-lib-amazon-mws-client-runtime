@@ -404,6 +404,8 @@ public class MwsConnection implements Cloneable, Closeable {
 
     /**
      * Call an operation and return the response data.
+     * @param type 
+     * 			The request type.
      * 
      * @param requestData
      *            The request data.
@@ -434,6 +436,7 @@ public class MwsConnection implements Cloneable, Closeable {
 
     /**
      * Call a request async, return a future on the response data.
+     * @param type 
      * 
      * @param requestData
      * 

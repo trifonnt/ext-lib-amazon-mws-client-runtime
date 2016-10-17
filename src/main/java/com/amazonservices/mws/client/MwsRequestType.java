@@ -12,6 +12,7 @@ public interface MwsRequestType {
 
     /**
      * Get the class that will be thrown for an exception response.
+     * @param e 
      * 
      * @return The exception class.
      */

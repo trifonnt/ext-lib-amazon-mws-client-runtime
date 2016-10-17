@@ -264,7 +264,7 @@ class MwsAQCall implements MwsCall {
     /**
      * Perform a synchronous call with no retry or error handling.
      * 
-     * @return
+     * @return MWS Response
      */
     @Override
     public MwsResponse execute() {
