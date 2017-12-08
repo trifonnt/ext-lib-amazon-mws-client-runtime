@@ -32,10 +32,9 @@ Prerequisites
 - Java Platform Standard Edition 6.0 Development Kit (JDK 1.6.0_19) or newer. If your version of the JDK is older than 6.0, you must install the newer version. For more information, go to the Java SE Downloads page. 
 
 
-Building when migrating to new Amazon MWS Products library version
-===============================================================================
+## How to
 
-Only if project is created from scratch
+### Build the project when starting from scratch
 ```shell
 $ mvn archetype:create \
  -DarchetypeGroupId=org.apache.maven.archetypes \
@@ -47,9 +46,9 @@ $ mvn archetype:create \
 $ cd ext-lib-amazon-mws-client-runtime
 $ rm src/main/java/com/amazonservices/mws/client/App.java
 $ rm src/test/java/com/amazonservices/mws/client/AppTest.java
-
 ```
 
+### Migrate to new version of Amazon MWS Products library
 ```shell
 $ git clone https://github.com/trifonnt/ext-lib-amazon-mws-client-runtime.git
 
@@ -74,20 +73,33 @@ $ mv runtime-src/com/amazonservices/mws/client/*.java ../src/main/java/com/amazo
 
 
 $ mvn clean install -Dmaven.javadoc.skip=false
-
 ```
 
-
-Publishing to JitPack
-===============================================================================
+### Publish new version to JitPack
 
  - Create new Release in GitHub
-
 
  - Open below URL in order to start JitPack build process
 
 ```shell
 https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.1
+```
+
+### Get this project into your Maven build(maven.xml)
+```xml
+...
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+ ...
+ 	<dependency>
+	    <groupId>com.github.trifonnt</groupId>
+	    <artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
+	    <version>1.0.1</version>
+	</dependency>
 ```
 
 
