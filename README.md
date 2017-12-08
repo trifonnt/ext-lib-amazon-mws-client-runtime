@@ -34,7 +34,7 @@ Prerequisites
 
 ## How to
 
-### Build the project when starting from scratch
+### Build this project when starting from scratch
 ```shell
 $ mvn archetype:create \
  -DarchetypeGroupId=org.apache.maven.archetypes \
@@ -85,7 +85,7 @@ $ mvn clean install -Dmaven.javadoc.skip=false
 https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.1
 ```
 
-### Get this project into your Maven build(maven.xml)
+### Get this project into your Maven build(pom.xml)
 ```xml
 ...
 	<repositories>
@@ -95,11 +95,13 @@ https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.1
 		</repository>
 	</repositories>
  ...
+ ...
  	<dependency>
 	    <groupId>com.github.trifonnt</groupId>
 	    <artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
 	    <version>1.0.1</version>
 	</dependency>
+...
 ```
 
 
