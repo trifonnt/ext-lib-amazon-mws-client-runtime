@@ -93,7 +93,9 @@ public class MwsJsonWriter implements MwsWriter {
         } else if (value instanceof Node) {
             appendValue(MwsUtl.toXmlString((Node) value));
         } else if (value instanceof XMLGregorianCalendar) {
+            append("\"");
             append(((XMLGregorianCalendar) value).toXMLFormat());
+            append("\"");
         } else if (value instanceof Enum) {
             append(value.toString());
         } else {
