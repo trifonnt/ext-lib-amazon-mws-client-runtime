@@ -82,7 +82,7 @@ $ mvn clean install -Dmaven.javadoc.skip=false
  - Open below URL in order to start JitPack build process
 
 ```shell
-https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.2
+https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.3
 ```
 
 ### Get this project into your Maven build(pom.xml)
@@ -99,7 +99,7 @@ https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.2
  	<dependency>
 	    <groupId>com.github.trifonnt</groupId>
 	    <artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
-	    <version>1.0.2</version>
+	    <version>1.0.3</version>
 	</dependency>
 ...
 ```
