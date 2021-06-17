@@ -1,5 +1,5 @@
 # amazon-mws-client-runtime-maven
-Mavenized version of Amazon MWS Client Runtime API
+Mavenized version of Amazon MWS Client Runtime
 
 [![Hits-of-Code](https://hitsofcode.com/github/chameleontartu/amazon-mws-client-runtime-maven)](https://hitsofcode.com/view/github/chameleontartu/amazon-mws-client-runtime-maven)
 [![Travis CI](https://travis-ci.org/ChameleonTartu/amazon-mws-client-runtime-maven.svg?branch=master)](https://travis-ci.org/ChameleonTartu/amazon-mws-client-runtime-maven)
