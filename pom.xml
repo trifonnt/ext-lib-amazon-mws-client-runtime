@@ -19,15 +19,9 @@ limitations under the License.
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<!--parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>9</version>
-	</parent-->
-
-	<groupId>com.github.trifonnt</groupId>
-	<artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
-	<version>1.0.3</version>
+	<groupId>com.github.chameleontartu</groupId>
+	<artifactId>amazon-mws-client-runtime-maven</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>Amazon MWS :: Client Runtime</name>
 	<description>Amazon MWS Client Runtime Java Library</description>
@@ -42,6 +36,15 @@ limitations under the License.
 	</licenses>
 
 	<developers>
+		<developer>
+			<id>chameleontartu</id>
+			<name>Dmytro Chasovskyi</name>
+			<email>dmitriy.chasovskoy@gmail.com</email>
+			<url>https://www.linkedin.com/in/dmytrochasovskyi/</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
 		<developer>
 			<id>trifonnt</id>
 			<name>Trifon Trifonov</name>
@@ -65,9 +68,9 @@ limitations under the License.
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:trifonnt/ext-lib-amazon-mws-client-runtime.git</connection>
-		<developerConnection>scm:git:ssh@github.com:trifonnt/ext-lib-amazon-mws-client-runtime.git</developerConnection>
-		<url>https://github.com/trifonnt/ext-lib-amazon-mws-client-runtime/tree/master</url>
+		<connection>scm:git:git@github.com:ChameleonTartu/amazon-mws-client-runtime-maven.git</connection>
+		<developerConnection>scm:git:ssh@github.com:ChameleonTartu/amazon-mws-client-runtime-maven.git</developerConnection>
+		<url>https://github.com/ChameleonTartu/amazon-mws-client-runtime-maven/tree/master</url>
 	</scm>
 
 	<prerequisites>
@@ -88,6 +91,7 @@ limitations under the License.
 		-->
 		<additionalparam>-Xdoclint:none</additionalparam>
 
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-bundle-version>2.3.7</maven-bundle-version>
 		<commons-codec-version>1.6</commons-codec-version>
 		<commons-logging-version>1.1</commons-logging-version>
@@ -112,12 +116,6 @@ limitations under the License.
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${org-apache-httpcomponents-version}</version>
-			<!--exclusions>
-				<exclusion>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-				</exclusion>
-			</exclusions-->
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -164,13 +162,6 @@ limitations under the License.
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<version>2.10</version>
-					<!--dependencies>
-						<dependency>
-							<groupId>org.apache.camel</groupId>
-							<artifactId>camel-buildtools</artifactId>
-							<version>${project.version}</version>
-						</dependency>
-					</dependencies-->
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<downloadJavadocs>false</downloadJavadocs>
@@ -253,6 +244,11 @@ limitations under the License.
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M2</version>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -264,6 +260,71 @@ limitations under the License.
 	</repositories>
 
 	<profiles>
+		<profile>
+			<id>signing-deploy</id>
+			<activation>
+				<property>
+					<name>gpg.passphrase</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<!-- This is necessary for gpg to not try to use the pinentry programs -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>deploy</id>
+			<activation>
+				<jdk>[1.6,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadoc</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>release-sign-artifacts</id>
 			<activation>
@@ -323,10 +384,14 @@ limitations under the License.
 	</profiles>
 
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>internal.repo</id>
-			<name>Temporary Staging Repository</name>
-			<url>file://${project.build.directory}/mvn-repo</url>
+			<id>ossrh</id>
+			<name>Central Repository OSSRH</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 </project>
