@@ -218,6 +218,7 @@ class MwsAQCall implements MwsCall {
      * 
      * @return The response header metadata.
      */
+    @Override
     public MwsResponseHeaderMetadata getResponseHeaderMetadata() {
         return rhmd;
     }
