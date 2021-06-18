@@ -3,7 +3,7 @@
 Mavenized version of Amazon MWS Client Runtime
 
 [![Hits-of-Code](https://hitsofcode.com/github/chameleontartu/amazon-mws-client-runtime-maven)](https://hitsofcode.com/view/github/chameleontartu/amazon-mws-client-runtime-maven)
-[![Travis CI](https://travis-ci.org/ChameleonTartu/amazon-mws-client-runtime-maven.svg?branch=master)](https://travis-ci.org/ChameleonTartu/amazon-mws-client-runtime-maven)
+[![Travis CI](https://travis-ci.com/ChameleonTartu/amazon-mws-client-runtime-maven.svg?branch=master)](https://travis-ci.com/ChameleonTartu/amazon-mws-client-runtime-maven)
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.chameleontartu/amazon-mws-client-runtime-maven)
 [![](https://jitpack.io/v/ChameleonTartu/amazon-mws-client-runtime-maven.svg)](https://jitpack.io/#ChameleonTartu/amazon-mws-client-runtime-maven)
 
