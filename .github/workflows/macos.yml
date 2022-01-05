@@ -1,0 +1,47 @@
+name: macOS
+
+on:
+  push:
+  workflow_dispatch: # Allow for running this manually.
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    name: Build
+    strategy:
+      matrix:
+        os: [ macos-11, macos-10.15 ]
+        java: [ 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        distribution: [ 'zulu' ]
+      fail-fast: false
+    steps:
+      - name: Save timestamp
+        id: timestamp
+        run: echo "::set-output name=timestamp::$(timestamp +%s)"
+      - name: Restore previous run result
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ github.run_id }}-${{ github.job }}-${{ matrix.os }}-${{ matrix.java }}-${{ steps.timestamp.outputs.timestamp }}
+          restore-keys: |
+            ${{ github.run_id }}-${{ github.job }}-${{ matrix.os }}-${{ matrix.java }}-
+      - name: Get the previous run result
+        id: run_result
+        run: cat ~/.m2/repository/run_result 2>/dev/null || echo 'default'
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+        if: steps.run_result.outputs.run_result != 'success'
+      - name: Install Java and Maven
+        uses: actions/setup-java@v2
+        with:
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.java }}
+      - name: Maven version
+        run: mvn --version # Potentially make a check for Maven to be 3.8.3 or higher
+      - name: Build project
+        if: steps.run_result.outputs.run_result != 'success'
+        run: mvn clean install -q
+      - name: Save results
+        run: echo "::set-output name=run_result::success" > ~/.m2/repository/run_result
+      - name: Show results
+        run: cat ~/.m2/repository/run_result
