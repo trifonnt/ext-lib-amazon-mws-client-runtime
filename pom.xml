@@ -19,29 +19,30 @@ limitations under the License.
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<!--parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>9</version>
-	</parent-->
-
-	<groupId>com.github.trifonnt</groupId>
-	<artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
-	<version>1.0.3</version>
+	<groupId>com.github.chameleontartu</groupId>
+	<artifactId>amazon-mws-client-runtime-maven</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>Amazon MWS :: Client Runtime</name>
 	<description>Amazon MWS Client Runtime Java Library</description>
-	<url></url>
 
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
 	<developers>
+		<developer>
+			<id>chameleontartu</id>
+			<name>Dmytro Chasovskyi</name>
+			<url>https://www.linkedin.com/in/dmytrochasovskyi/</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
 		<developer>
 			<id>trifonnt</id>
 			<name>Trifon Trifonov</name>
@@ -65,13 +66,13 @@ limitations under the License.
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:trifonnt/ext-lib-amazon-mws-client-runtime.git</connection>
-		<developerConnection>scm:git:ssh@github.com:trifonnt/ext-lib-amazon-mws-client-runtime.git</developerConnection>
-		<url>https://github.com/trifonnt/ext-lib-amazon-mws-client-runtime/tree/master</url>
+		<connection>scm:git:git@github.com:ChameleonTartu/amazon-mws-client-runtime-maven.git</connection>
+		<developerConnection>scm:git:ssh@github.com:ChameleonTartu/amazon-mws-client-runtime-maven.git</developerConnection>
+		<url>https://github.com/ChameleonTartu/amazon-mws-client-runtime-maven/tree/master</url>
 	</scm>
 
 	<prerequisites>
-		<maven>3.0.2</maven>
+		<maven>3.8.2</maven>
 	</prerequisites>
 
 	<properties>
@@ -79,22 +80,28 @@ limitations under the License.
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<jdk.version>1.6</jdk.version>
-		<compiler.fork>1.6</compiler.fork>
+		<jdk.version>1.8</jdk.version>
+		<compiler.fork>1.8</compiler.fork>
 
-		<!-- 
-		  Turning off doclint in JDK 8 Javadoc
-		- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
-		-->
-		<additionalparam>-Xdoclint:none</additionalparam>
-
-		<maven-bundle-version>2.3.7</maven-bundle-version>
-		<commons-codec-version>1.6</commons-codec-version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<commons-codec-version>1.15</commons-codec-version>
 		<commons-logging-version>1.1</commons-logging-version>
-		<org-apache-httpcomponents-version>[4.3.6,)</org-apache-httpcomponents-version>
+		<org-apache-httpcomponents-version>4.5.13</org-apache-httpcomponents-version>
 
-		<mockito-version>1.9.5</mockito-version>
-		<junit-version>[4.13.1,)</junit-version>
+		<mockito-version>1.10.19</mockito-version>
+		<junit-version>4.13.2</junit-version>
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+		<dependency-check-maven.version>6.5.2</dependency-check-maven.version>
+
+		<!-- Maven plugins -->
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+		<maven-scm-provider-gitexe.version>1.12.2</maven-scm-provider-gitexe.version>
 	</properties>
 
 	<dependencies>
@@ -112,12 +119,6 @@ limitations under the License.
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${org-apache-httpcomponents-version}</version>
-			<!--exclusions>
-				<exclusion>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-				</exclusion>
-			</exclusions-->
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -134,43 +135,33 @@ limitations under the License.
 	</dependencies>
 
 	<build>
-		<defaultGoal>install</defaultGoal>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.2</version>
+					<version>${maven-assembly-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>1.5</version>
+					<version>${build-helper-maven-plugin.version}</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
+					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
 						<source>${jdk.version}</source>
 						<target>${jdk.version}</target>
-						<maxmem>256M</maxmem>
-						<fork>${compiler.fork}</fork>
 					</configuration>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.10</version>
-					<!--dependencies>
-						<dependency>
-							<groupId>org.apache.camel</groupId>
-							<artifactId>camel-buildtools</artifactId>
-							<version>${project.version}</version>
-						</dependency>
-					</dependencies-->
+					<version>${maven-eclipse-plugin.version}</version>
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<downloadJavadocs>false</downloadJavadocs>
@@ -180,40 +171,50 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-idea-plugin</artifactId>
-					<version>2.2</version>
+					<version>${maven-idea-plugin.version}</version>
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<downloadJavadocs>false</downloadJavadocs>
 					</configuration>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.9.1</version>
+					<version>${maven-javadoc-plugin.version}</version>
 					<configuration>
 						<attach>true</attach>
 						<source>${jdk.version}</source>
 						<quiet>true</quiet>
 						<detectOfflineLinks>false</detectOfflineLinks>
-						<javadocVersion>1.8</javadocVersion>
 						<encoding>${project.build.sourceEncoding}</encoding>
+						<doclint>none</doclint>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>${maven-install-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.8</version>
+					<version>${maven-surefire-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
-					<version>2.3.7</version>
+					<version>${maven-bundle-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${nexus-staging-maven-plugin.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<serverId>ossrh</serverId>
+						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -233,7 +234,7 @@ limitations under the License.
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>${maven-source-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -246,37 +247,69 @@ limitations under the License.
 			</plugin>
 
 			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.1</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven-release-plugin.version}</version>
 				<configuration>
-					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+					<localCheckout>true</localCheckout>
+					<pushChanges>false</pushChanges>
+					<mavenExecutorId>forked-path</mavenExecutorId>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>${maven-scm-provider-gitexe.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven-deploy-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>${dependency-check-maven.version}</version>
+				<executions>
+					<execution>
+						<id>owasp</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<cveValidForHours>1</cveValidForHours>
+					<failBuildOnCVSS>5.0</failBuildOnCVSS>
 				</configuration>
 			</plugin>
 
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-
 	<profiles>
 		<profile>
-			<id>release-sign-artifacts</id>
+			<id>signing-deploy</id>
 			<activation>
 				<property>
-					<name>performRelease</name>
-					<value>true</value>
+					<name>gpg.passphrase</name>
 				</property>
 			</activation>
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -284,6 +317,13 @@ limitations under the License.
 								<goals>
 									<goal>sign</goal>
 								</goals>
+								<configuration>
+									<!-- This is necessary for gpg to not try to use the pinentry programs -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -292,7 +332,10 @@ limitations under the License.
 		</profile>
 
 		<profile>
-			<id>release</id>
+			<id>deploy</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -310,7 +353,7 @@ limitations under the License.
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>attach-javadocs</id>
+								<id>attach-javadoc</id>
 								<goals>
 									<goal>jar</goal>
 								</goals>
@@ -323,10 +366,14 @@ limitations under the License.
 	</profiles>
 
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>internal.repo</id>
-			<name>Temporary Staging Repository</name>
-			<url>file://${project.build.directory}/mvn-repo</url>
+			<id>ossrh</id>
+			<name>Central Repository OSSRH</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 </project>

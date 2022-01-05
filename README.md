@@ -1,120 +1,75 @@
-[![Build Status](https://travis-ci.org/trifonnt/ext-lib-amazon-mws-client-runtime.png?branch=master)](https://travis-ci.org/trifonnt/ext-lib-amazon-mws-client-runtime)
-[![](https://jitpack.io/v/trifonnt/ext-lib-amazon-mws-client-runtime.svg)](https://jitpack.io/#trifonnt/ext-lib-amazon-mws-client-runtime)
+# amazon-mws-client-runtime-maven
 
+Mavenized version of Amazon MWS Client Runtime
 
-Amazon MWS(Marketplace Web Service) Client Runtime Library - Version 2011-10-01.V269521071
-=============================================================================== 
-The project is mavenised unofficial copy of Java library provided by Amazon for dealing with Amazon Marketplace Web Service API.
-It is common Java Client Runtime available in Amazon MWS libraries, like:
+[![Hits-of-Code](https://hitsofcode.com/github/chameleontartu/amazon-mws-client-runtime-maven)](https://hitsofcode.com/view/github/chameleontartu/amazon-mws-client-runtime-maven)
+[![Travis CI](https://travis-ci.com/ChameleonTartu/amazon-mws-client-runtime-maven.svg?branch=master)](https://travis-ci.com/ChameleonTartu/amazon-mws-client-runtime-maven)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.chameleontartu/amazon-mws-client-runtime-maven)
+[![](https://jitpack.io/v/ChameleonTartu/amazon-mws-client-runtime-maven.svg)](https://jitpack.io/#ChameleonTartu/amazon-mws-client-runtime-maven)
 
- - https://developer.amazonservices.com/doc/products/products/v20111001/java.html
+# How to use into Maven (pom.xml)
 
- - https://developer.amazonservices.com/doc/orders/orders/v20130901/java.html
+## Maven Central
 
+The library is published into Maven Central repository
 
-Current CI status: https://travis-ci.org/trifonnt/ext-lib-amazon-mws-client-runtime
-
-
-About this Library
-=============================================================================== 
-
-Based on the 2011-10-01 API version.
-Refers only to the [MWSProductsJavaClientLibrary-2011-10-01.zip](https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/clientlib/Products/2011-10-01/MWSProductsJavaClientLibrary-2011-10-01._V269521071_.zip) file.
-
-
-Prerequisites
-=============================================================================== 
-
-- Amazon Pro Merchant seller account or another Amazon account that makes you eligible to use Amazon Marketplace Web Service (Amazon MWS). For more information, see the [Amazon MWS FAQ](https://developer.amazonservices.com/gp/mws/faq.html).
-
-- Registering for Amazon MWS. For more information see the [Amazon MWS FAQ](https://developer.amazonservices.com/gp/mws/faq.html).
-
-- Java Platform Standard Edition 6.0 Development Kit (JDK 1.6.0_19) or newer. If your version of the JDK is older than 6.0, you must install the newer version. For more information, go to the Java SE Downloads page. 
-
-
-## How to
-
-### Build this project when starting from scratch
-```shell
-$ mvn archetype:create \
- -DarchetypeGroupId=org.apache.maven.archetypes \
- -DgroupId=com.github.trifonnt \
- -DartifactId=ext-lib-amazon-mws-client-runtime \
- -DpackageName=com.amazonservices.mws.client \
- -Dversion=1.0.0
-
-$ cd ext-lib-amazon-mws-client-runtime
-$ rm src/main/java/com/amazonservices/mws/client/App.java
-$ rm src/test/java/com/amazonservices/mws/client/AppTest.java
+```
+<dependency>
+  <groupId>com.github.chameleontartu</groupId>
+  <artifactId>amazon-mws-client-runtime-maven</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
 
-### Migrate to new version of Amazon MWS Products library
-```shell
-$ git clone https://github.com/trifonnt/ext-lib-amazon-mws-client-runtime.git
+## Jitpack
 
-$ cd ext-lib-amazon-mws-client-runtime
+If you don't want to use Maven Central you can use `jitpack.io` which is a mirror of Maven Central.
 
-$ mkdir orig-library
+You would need to add a repository to fetch it from.
 
-$ cd orig-library
-
-$ wget https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/clientlib/Products/2011-10-01/MWSProductsJavaClientLibrary-2011-10-01._V269521071_.zip
-
-$ unzip MWSProductsJavaClientLibrary-2011-10-01._V269521071_.zip
-
-
-$ cp ../../ext-lib-amazon-mws-products/LICENSE.txt  ../
-$ cp ../../ext-lib-amazon-mws-products/.travis.yml  ../
-$ cp ../../ext-lib-amazon-mws-products/.gitignore  ../
-
-$ mkdir ../src/test/resources/
-
-$ mv runtime-src/com/amazonservices/mws/client/*.java ../src/main/java/com/amazonservices/mws/client
-
-
-$ mvn clean install -Dmaven.javadoc.skip=false
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
 ```
 
-### Publish new version to JitPack
-
- - Create new Release in GitHub
-
- - Open below URL in order to start JitPack build process
-
-```shell
-https://jitpack.io/com/github/trifonnt/ext-lib-amazon-mws-client-runtime/1.0.3
+Dependency itself:
+```
+<dependency>
+    <groupId>com.github.chameleontartu</groupId>
+    <artifactId>amazon-mws-client-runtime-maven</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
-### Get this project into your Maven build(pom.xml)
-```xml
-...
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
- ...
- ...
- 	<dependency>
-	    <groupId>com.github.trifonnt</groupId>
-	    <artifactId>ext-lib-amazon-mws-client-runtime</artifactId>
-	    <version>1.0.3</version>
-	</dependency>
-...
-```
+# Inspiration
 
-Licensing
-=============================================================================== 
+This project inspired by [ext-lib-amazon-mws-products](https://github.com/trifonnt/ext-lib-amazon-mws-products)
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+It also a port of [ext-lib-amazon-mws-client-runtime](https://github.com/trifonnt/ext-lib-amazon-mws-client-runtime) that wasn't published to Maven Central.
 
-    http://www.apache.org/licenses/LICENSE-2.0
+# Docs and other MWS projects
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+The other MWS projects that ported from Ant to Maven. See [docs](https://github.com/ChameleonTartu/amazon-mws-docs).
+
+
+# Java library version
+
+| Lib version  |
+|--------------|
+| 2011-10-01   |
+
+# Contribution
+
+To contribute to this project feel free to submit issues and PRs as well as questions and enhancement proposals.
+
+# TODO
+
+This repo is one of the series of MWS API SDKs which I am planning to put under the same umbrella and keep them up-to-date.
+
+# How to support
+
+<a href="https://www.buymeacoffee.com/chameleontartu"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chameleontartu&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
